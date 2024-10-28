@@ -1,4 +1,4 @@
-#Overview
+**#Overview**
 Demo-Crypto-Ransomware is a security demonstration project designed to showcase the core techniques used in encryption-based ransomware. By using a combination of AES (Advanced Encryption Standard) and RSA (Rivest-Shamir-Adleman) algorithms, this demo simulates how ransomware encrypts files in a specified directory on a target system. This can be a helpful study tool for cybersecurity students, analysts, and ethical hackers looking to understand the underlying encryption mechanisms and functionality in a controlled environment.
 
 #How It Works
