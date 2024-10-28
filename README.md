@@ -18,7 +18,7 @@ Demo-Crypto-Ransomware is a security demonstration project designed to showcase 
 - User Interface: Minimalistic command-line interface designed to keep interactions simple and clear.
   
 # Features
---Recursive Directory Encryption: Encrypts all files within a specified directory, including subfolders.
+- Recursive Directory Encryption: Encrypts all files within a specified directory, including subfolders.
 - AES + RSA Hybrid Encryption: Combines the strengths of AES for file encryption and RSA for secure key transfer.
 - Error Handling: Handles file access permissions and file type limitations gracefully.
 - Simulated Ransom Note: An optional feature to display a simulated ransom note after encryption.
