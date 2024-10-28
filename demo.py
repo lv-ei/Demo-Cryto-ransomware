@@ -60,14 +60,14 @@ def send_private_key_via_email(private_key):
     )
 
     message = Mail(
-        from_email='canopyfit@gmail.com',
-        to_emails='canopycarepro@gmail.com',
+        from_email='EXAMPLE@......',
+        to_emails='YOUR_EMAIL YOU WANT TO RECEIVE THE PRIVATE KEY, CIPHER .....',
         subject='Your RSA Private Key',
         plain_text_content=f'Here is your private key:\n\n{pem_private_key.decode("utf-8")}'
     )
 
     try:
-        sg = SendGridAPIClient('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')
+        sg = SendGridAPIClient('your_sendgrid_API')
         response = sg.send(message)
         print(response.status_code)
         print(response.body)
